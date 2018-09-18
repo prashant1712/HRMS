@@ -1,0 +1,380 @@
+{
+  "salary_components": [
+    {
+      "name": "Parking Fees",
+      "value": 2000,
+      "valueType": "INR",
+      "type": "deduction",
+      "id": 2
+    },
+    {
+      "name": "new1",
+      "value": 1500,
+      "valueType": "INR",
+      "type": "allowance",
+      "id": 4
+    },
+    {
+      "name": "HRA",
+      "value": "15",
+      "valueType": "percent",
+      "type": "allowance",
+      "id": 5
+    },
+    {
+      "name": "DA",
+      "value": "20",
+      "valueType": "percent",
+      "type": "allowance",
+      "id": 6
+    },
+    {
+      "name": "gra",
+      "value": "2000",
+      "valueType": "INR",
+      "type": "allowance",
+      "id": 7
+    }
+  ],
+  "designation": [
+    {
+      "name": "sales",
+      "totalSalary": 10500,
+      "basic_salary": "10000",
+      "salary_components": [
+        {
+          "name": "Parking Fees",
+          "value": "1000",
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 1
+        }
+      ],
+      "id": 1
+    },
+    {
+      "name": "sde",
+      "totalSalary": 28250,
+      "basic_salary": "25000",
+      "salary_components": [
+        {
+          "name": "Parking Fees",
+          "value": 2000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "new1",
+          "value": 2500,
+          "valueType": "allowance",
+          "type": "allowance",
+          "id": 4
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 5
+        }
+      ],
+      "id": 2
+    },
+    {
+      "salary_components": [
+        {
+          "name": "Parking Fees",
+          "value": 2000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "DA",
+          "value": "20",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 6
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 5
+        }
+      ],
+      "name": "marketing",
+      "totalSalary": 11500,
+      "basic_salary": "10000",
+      "id": 3
+    },
+    {
+      "salary_components": [
+        {
+          "name": "Parking Fees",
+          "value": 3000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "new1",
+          "value": 1500,
+          "valueType": "allowance",
+          "type": "allowance",
+          "id": 4
+        }
+      ],
+      "name": "seniorsde",
+      "totalSalary": 199500,
+      "basic_salary": "200000",
+      "id": 4
+    }
+  ],
+  "employees": [
+    {
+      "permanent": {
+        "address": "A-10, Sector-62",
+        "city": "Noida"
+      },
+      "current": {
+        "address": "A-10, Sector-62",
+        "city": "Noida"
+      },
+      "firstname": "Prashant",
+      "lastname": "Singh",
+      "contact_no": "7042114692",
+      "username": "14103101",
+      "email": "prashantsingh.sp@gmail.com",
+      "totalSalary": 31750,
+      "designationName": "sde",
+      "shifts": {
+        "name": "new1",
+        "starttime": "2018-03-22T18:30:38.342Z",
+        "endtime": "2018-03-23T02:30:38.411Z",
+        "id": 1
+      },
+      "salary_components": [
+        {
+          "name": "DA",
+          "value": "20",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 6
+        },
+        {
+          "name": "Parking Fees",
+          "value": 2000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 5
+        }
+      ],
+      "basic_salary": "25000",
+      "id": 1
+    },
+    {
+      "permanent": {
+        "address": "A-10, Sector-62",
+        "city": "Noida"
+      },
+      "current": {
+        "address": "A-10, Sector-62",
+        "city": "Noida"
+      },
+      "firstname": "Harshit",
+      "lastname": "Batra",
+      "contact_no": "8506861844",
+      "username": "14103217",
+      "shifts": {
+        "name": "new1",
+        "starttime": "2018-03-22T18:30:38.342Z",
+        "endtime": "2018-03-23T02:30:38.411Z",
+        "id": 1
+      },
+      "email": "gggvgh@gmail.com",
+      "totalSalary": 31750,
+      "designationName": "sde",
+      "salary_components": [
+        {
+          "name": "Parking Fees",
+          "value": 2000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "DA",
+          "value": "20",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 6
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 5
+        }
+      ],
+      "basic_salary": "25000",
+      "id": 2
+    },
+    {
+      "permanent": {
+        "address": "mayur vihar",
+        "city": "New Delhi"
+      },
+      "current": {
+        "address": "mayur vihar",
+        "city": "New Delhi"
+      },
+      "firstname": "Aryakk",
+      "lastname": "Puri",
+      "contact_no": "8527060950",
+      "username": "aryakk14",
+      "shifts": {
+        "name": "new2",
+        "starttime": "2018-03-26T03:30:55.317Z",
+        "endtime": "2018-03-26T11:30:55.363Z",
+        "id": 2
+      },
+      "email": "aryakk.14@gmail.com",
+      "totalSalary": 13000,
+      "designationName": "marketing",
+      "salary_components": [
+        {
+          "name": "new1",
+          "value": 1500,
+          "valueType": "allowance",
+          "type": "allowance",
+          "id": 4
+        },
+        {
+          "name": "Parking Fees",
+          "value": 2000,
+          "valueType": "INR",
+          "type": "deduction",
+          "id": 2
+        },
+        {
+          "name": "DA",
+          "value": "20",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 6
+        },
+        {
+          "name": "HRA",
+          "value": "15",
+          "valueType": "percent",
+          "type": "allowance",
+          "id": 5
+        }
+      ],
+      "basic_salary": "10000",
+      "id": 3
+    }
+  ],
+  "shifts": [
+    {
+      "name": "new1",
+      "starttime": "2018-03-22T18:30:38.342Z",
+      "endtime": "2018-03-23T02:30:38.411Z",
+      "id": 1
+    },
+    {
+      "name": "new2",
+      "starttime": "2018-03-26T03:30:55.317Z",
+      "endtime": "2018-03-26T11:30:55.363Z",
+      "id": 2
+    }
+  ],
+  "attendance": [
+    {
+      "eachDayAttendance": [
+        {
+          "Date": "2018-03-21",
+          "checkintime": "2018-03-24T07:00:34.634Z",
+          "checkouttime": "2018-03-24T16:00:34.674Z"
+        },
+        {
+          "Date": "2018-03-22",
+          "checkintime": "2018-03-24T05:30:37.684Z",
+          "checkouttime": "2018-03-24T14:30:37.740Z"
+        },
+        {
+          "Date": "2018-03-23",
+          "checkintime": "2018-03-24T03:30:32.650Z",
+          "checkouttime": "2018-03-24T13:00:32.688Z"
+        }
+      ],
+      "employee_id": 1,
+      "id": 1
+    },
+    {
+      "eachDayAttendance": [
+        {
+          "Date": "2018-03-26",
+          "checkintime": "2018-03-26T03:30:07.838Z",
+          "checkouttime": "2018-03-26T11:30:07.962Z"
+        }
+      ],
+      "employee_id": 2,
+      "id": 2
+    },
+    {
+      "eachDayAttendance": [
+        {
+          "Date": "2018-03-26",
+          "checkintime": "2018-03-26T05:30:56.566Z",
+          "checkouttime": "2018-03-26T12:00:56.593Z"
+        }
+      ],
+      "employee_id": 3,
+      "id": 3
+    }
+  ],
+  "settings": [
+    {
+      "percentValue": 12,
+      "type": "overtime",
+      "duration": 1
+    },
+    {
+      "type": "late",
+      "deductions": [
+        {
+          "duration": 180,
+          "percentValue": "65"
+        },
+        {
+          "duration": 60,
+          "percentValue": 50
+        },
+        {
+          "duration": 120,
+          "percentValue": 100
+        }
+      ],
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<div class="modal-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>{{employee.firstname+" "+employee.lastname}}</h3>
+            </div>
+            <div class="col-sm-6" style="margin-top:10px">
+                <h4>Total Salary: {{employee.totalSalary}}</h4>
+            </div>
+        </div>
+        
+    </div>
+        
+        
+    <div class="modal-body">
+        <h4><label>Allowances</label></h4>
+            <table class="table table-striped table-hover" >
+                    <!-- <div class="container">
+                        <div class="col-sm-6" style="float:left"> -->
+                    <thead>
+                        <tr > 
+                            <th>Component Name</th>
+                            <th>Value</th>
+                            <th>Value Type</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="component in employee.salary_components" ng-if="component.type==='allowance'" >
+                            <td>{{component.name}}</td>
+                            <td>{{component.value}}</td>
+                            <td>{{component.valueType}}</td>
+                            <td ng-if="component.valueType=='percent'">{{((employee.basic_salary*component.value)/100)|number:0}}</td>
+                        </tr>
+                    </tbody>
+                </div>
+            </table>
+            <h4><label>Deductions</label></h4>
+            <table class="table table-striped table-hover" >
+                    <!-- <div class="container">
+                        <div class="col-sm-6" style="float:left"> -->
+                    <thead>
+                        <tr > 
+                            <th>Component Name</th>
+                            <th>Value</th>
+                            <th>Value Type</th> 
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr ng-repeat="component in employee.salary_components" ng-if="component.type==='deduction'" >
+                            <td>{{component.name}}</td>
+                            <td>{{component.value}}</td>
+                            <td>{{component.valueType}}</td>
+                            <td ng-if="component.valueType=='percent'">{{((employee.basic_salary*component.value)/100)|number:0}}</td>
+                        </tr>
+                    </tbody>
+                </div>
+            </table>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Overtime Allowances</td>
+                        <td>{{overtimeAllowances}}</td>
+                    </tr>
+                    <tr class="alert-danger">
+                        <td>Late Deductions</td>
+                        <td>{{lateDeductions}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        <!-- <div class="panel panel-primary" style=" float: right;width: 50%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">OverTime Allowances
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Value: {{overtimeAllowances}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-danger" style=" float: left; width: 50%;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Late Deductions
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Value: {{lateDeductions}}</li>
+                </ul>
+            </div>
+        </div> -->
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button style="float:right" class="btn btn-warning" ng-click="cancel()">Done</button>
+    </div>

@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3>Attendance of {{employee.firstname+" "+employee.lastname}}</h3>
+    
+</div>
+        
+        
+    <div class="modal-body">
+        <div style="float: left; margin-left: 50px;">
+            <table class="table table-striped table-hover" >
+                <!-- <div class="container">
+                    <div class="col-sm-6" style="float:left"> -->
+                        <thead>
+                            <tr > 
+                                <th>Date</th>
+                                <th>Check-in Time</th>
+                                <th>Check-out Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="attendance in eachDayAttendance"  >
+                                <td>{{attendance.Date | date}}</td>
+                                <td>{{attendance.checkintime |date:"hh:mm"}}</td>
+                                <td>{{attendance.checkouttime |date:"hh:mm"}}</td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </table>
+                
+        </div><br><hr>
+        
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button style="float:right" class="btn btn-warning" ng-click="cancel()">Done</button>
+    </div>

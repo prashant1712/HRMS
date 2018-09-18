@@ -1,0 +1,136 @@
+<div ui-view ng-if="showAdminView=='true'">
+    <form name="designationName" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : designationName.designation.$invalid && (!designationName.designation.$pristine || designationName.designation.$touched) }">
+            <label for="designation">Enter Designation:</label>
+            <input name="designation" id="designations" ng-model="selected_designation" typeahead-no-results="designation.noResultsFound" type="text" placeholder="enter designation's name"  uib-typeahead="designation for designation in designations | filter: designationName.designation.$viewValue | limitTo:8" class="form-control">
+            <p ng-show="designationName.designation.$invalid && !designationName.designation.$pristine" class="help-block">Enter Designation!</p>
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="submit(designationName)" ng-disabled="designationName.$invalid">View Salary Components</button>
+        <button style="float: right" type="button" class="btn btn-primary" ng-show="!showDnd" ng-disabled="designationName.$invalid" ng-click="togglednd()">Add more Salary Components</button>
+    </form>
+    <hr>
+
+    <!-- <h4><label ng-show="!showDnd">Already assigned Salary Components:</label></h4> -->
+    <div ng-show="!showDnd" ng-repeat="component in designationDetail.salary_components" style="float: left; margin-left: 50px;">
+        <div ng-class="component.type==='allowance'? 'panel panel-primary':'panel panel-danger'" style=" height: 5%; width: 100%;">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="text-align: center">{{designationDetail.name}}<br><br>
+                    Basic Salary: {{designationDetail.basic_salary}}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">Name: {{component.name}}</li>
+                    <li class="list-group-item">Value: {{component.value}} {{component.valueType==='percent'? '%':'Rs.'}}</li>
+                    <li class="list-group-item">Type: {{component.type}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <style>
+        section {
+                border-radius: 1px;
+                margin-bottom: 0px;
+            }
+
+        .col-xs-5 .ul {
+                padding-left: 5px;
+            }
+        
+
+        
+
+            li div {
+                display: table-cell;
+                vertical-align: top;
+
+            }
+            ::-webkit-scrollbar {
+                width: 0em;
+                height: 0em
+            }
+
+    </style>
+    <div ng-show="showDnd">
+        <div class="row">
+            
+            <div class="col-sm-5" style="margin-left: 100px; border:lightslategrey">
+                <h3 style="font-family: Arial, Helvetica, sans-serif;">Drag salary components from here:</h3>
+                <br><hr>
+                <div style="max-height:500px; overflow-y: scroll ; position:relative;">
+                    <div ng-repeat="component in component_details"  dnd-list="component_details" dnd-draggable="component" dnd-moved="added_component($index)" dnd-type="'salary_components'" dnd-effect-allowed="move" >
+                        <div style="top: 0; left: 0; width:100%;" >
+                            <ul class="list-group">
+                                <li class="list-group-item">Name: <b>{{component.name}}</b>,  Value: <b>{{component.value}} {{component.valueType==='percent'? '%':'Rs.'}}</b></li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5" style="margin-left: 5%; border:lightslategrey;">
+                <h3 style="font-family: Arial, Helvetica, sans-serif;">Assigned salary components for {{designationDetail.name}} </h3>
+                <!-- <p style=" color: black; overflow: auto;">Drop here!</p> -->
+                <br>
+                <b><p style=" color:black">Basic Salary: {{designationDetail.basic_salary}}</p></b>
+                    
+                <div style="max-height:500px; position:relative; border:lightslategrey; overflow-y: scroll ;">
+                        <div ng-repeat="item in designationDetail.salary_components track by item._id"  dnd-list="designationDetail.salary_components" dnd-draggable="item" dnd-moved="removed_component($index)" dnd-effect-allowed="move">
+                            <div class="row">
+                                <div class="col-sm-6">    
+                                    <ul class="list-group" ng-show="!editMode">
+                                        <li class="list-group-item">Name: {{item.name}}</li>
+                                        <li class="list-group-item" ng-model="item.value">Value: {{item.value}}</li>
+                                        <li class="list-group-item" ng-model="item.valueType" >Value Type: {{item.valueType}}</li>
+                                    </ul>
+                                    <ul class="list-group" ng-show="editMode" style="width:200px">
+                                        <li class="list-group-item">Name: {{item.name}}</li>
+                                        <li class="list-group-item">Value: 
+                                            <div class="input-group">
+                                                <input type="number" size="100" name="value" class="form-control"  ng-model="item.value" placeholder="Enter value">
+                                                <div class="input-group-btn" data-toggle="buttons">
+                                                    <label class="btn btn-default btn-sm" ng-class="{active: item.valueType == 'INR'}" ng-click="setComponentValueType('INR')">
+                                                        <input type="radio" value="true" ng-model="item.valueType"></input>
+                                                        INR
+                                                    </label>
+                                                    <label class="btn btn-default btn-sm" ng-class="{active: item.valueType == 'percent'}" ng-click="setComponentValueType('percent')">
+                                                        <input type="radio" value="false" ng-model="item.valueType"></input>
+                                                        %
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">Type: {{item.type}}</li>
+                                    </ul>
+                                </div>
+                            
+                                <div class="col-sm-6">
+                                    <a ng-show="!editMode" ng-click="editMode=true" class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                                    </a>
+                                    <a ng-show="editMode" ng-click="editMode=false;" class="btn btn-success btn-sm">
+                                        <span class="glyphicon glyphicon-ok"></span> Done
+                                    </a>
+                                </div>
+                            </div>
+                        </div>       
+                    <hr>
+                </div>  
+            </div>
+            
+        </div>
+        <button ng-show="!$ctrl.inemployee" class="btn btn-primary" style="margin-left:100px; margin-top: 50px;" ng-click="saveEditedComponents()">Save</button>
+        <div class="panel panel-primary" style="width:200px;float: right;margin-right:100px;margin-top: 50px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Total Salary</h3>
+                
+            </div>
+            <div class="panel-body">
+                <p ng-model="designationDetail.totalSalary">{{designationDetail.totalSalary}}</p>
+            </div>
+        </div>
+        
+
+
+    </div>
+</div>

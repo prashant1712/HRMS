@@ -1,0 +1,82 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h2 style="color:rgb(241, 237, 245); padding-left:10px"><a ui-sref="dashboard()">HRMS</a></h2>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a ui-sref="dashboard()">Dashboard</a>
+            </li>
+            <li ng-if="showAdminView=='true'">
+                <a href="#createSubmenu" data-toggle="collapse" aria-expanded="false">Create</a>
+                <ul class="collapse list-unstyled" id="createSubmenu">
+                    <li><a ui-sref="dashboard.salary_components()">Salary Components</a></li>
+                    <li><a ui-sref="dashboard.create_designations()">Designations</a></li>
+                    <li><a ui-sref="dashboard.create_employees()">Employees</a></li>
+                </ul>
+            </li>
+            <li ng-if="showAdminView=='true'">
+              <a href="#viewSubmenu" data-toggle="collapse" aria-expanded="false">View</a>
+              <ul class="collapse list-unstyled" id="viewSubmenu">
+                  <li><a ui-sref="dashboard.view_designations()">Designations</a></li>
+                  <li><a ui-sref="dashboard.view_employees()">Employees</a></li>
+              </ul> 
+          </li>
+          <li ng-if="showAdminView!='true'">
+            <a ui-sref="dashboard.view_employees()">My Profile</a>
+          </li>
+          <li ng-if="showAdminView=='true'">
+            <a ui-sref="dashboard.shifts()">Shifts</a>
+          </li>
+            <li>
+                <a ui-sref="dashboard.attendance()">Attendance</a>
+            </li>
+            <li ng-if="showAdminView=='true'">
+              <a ui-sref="dashboard.employee_reports()">Reports</a>
+            </li>
+            <li ng-if="showAdminView=='true'">
+              <a ui-sref="dashboard.settings()">Settings</a>
+            </li>
+            <!-- <li>
+                <a ui-sref="logout()">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a>
+            </li> -->
+            
+
+        </ul>
+        <br>
+        <button style="background: transparent; margin-left: 20px" class="btn btn-primary" ng-click="logout()">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
+       
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+    <div ui-view>
+        
+        <table class="table table-striped table-hover" >
+            <!-- <div class="container">
+                <div class="col-sm-6" style="float:left"> -->
+            <thead>
+                <tr > 
+                    <th>Component Name</th>
+                    <th>Total Value</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="report in dashboardReports" >
+                    <td>{{report._id}}</td>
+                    <td>{{report.totalMoney}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+
+        
+    </div>
+</div>

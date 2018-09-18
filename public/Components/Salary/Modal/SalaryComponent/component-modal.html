@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h3>Create A New Salary Component!</h3>
+</div>
+
+<form name="salaryComponent" novalidate>
+    <div class="modal-body">
+
+        <div class="form-group has-feedback" ng-class="{'has-error' : salaryComponent.name.$invalid && (!salaryComponent.name.$pristine || salaryComponent.name.$touched) }">
+            <label>Name: </label>
+
+            <input type="text" name="name" placeholder="enter a valid salary component" class="form-control" ng-model="component.name"
+                ng-required="component.name" salary-component-name>
+            <div ng-show="salaryComponent.name.$pending" style="color: blue">
+                <span class="glyphicon glyphicon-time"></span>Checking
+            </div>
+            <div ng-show="salaryComponent.name.$error.componentName" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                This salary component already exists!   
+            </div>
+            
+            <div ng-show="salaryComponent.name.$valid && salaryComponent.name.$dirty ">
+                <span class="form-control-feedback glyphicon glyphicon-ok" style="color: green"></span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : salaryComponent.value.$invalid && (!salaryComponent.value.$pristine || salaryComponent.value.$touched) }">
+            <label>Value: </label>
+            <div class="input-group">
+                <input type="number" name="value" class="form-control" ng-model="component.value" placeholder="Enter value">
+                <div class="input-group-btn" data-toggle="buttons">
+                    <label class="btn btn-default" ng-class="{active: component.component_valuetype == 'INR'}" ng-click="setComponentValueType('INR')">
+                        <input type="radio" value="true" ng-model="component.component_valuetype"></input>
+                        INR
+                    </label>
+                    <label class="btn btn-default" ng-class="{active: component.component_valuetype == 'percent'}" ng-click="setComponentValueType('percent')">
+                        <input type="radio" value="false" ng-model="component.component_valuetype"></input>
+                        %
+                    </label>
+                </div>
+            </div>
+            <p ng-show="salaryComponent.value.$invalid && (!salaryComponent.value.$pristine || salaryComponent.value.$touched)" class="help-block">Component value required.</p>
+            <!-- <div ng-show="salaryComponent.value.$valid && salaryComponent.value.$dirty ">
+                <span class="form-control-feedback glyphicon glyphicon-ok" style="color: green"></span>
+            </div> -->
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : salaryComponent.type.$invalid && (!salaryComponent.type.$pristine || salaryComponent.type.$touched) }">
+            <label>Type: </label>
+            <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary" ng-class="{active: component.component_type == 'allowance'}" ng-click="setComponentType('allowance')">
+                            <input type="radio" value="true" ng-model="component.component_type"></input>
+                            Allowance
+                        </label>
+                        <label class="btn btn-primary" ng-class="{active: component.component_type == 'deduction'}" ng-click="setComponentType('deduction')">
+                            <input type="radio" value="false" ng-model="component.component_type"></input>
+                            Deduction
+                        </label>
+            </div>
+            <p ng-show="salaryComponent.component_type.$invalid && (!salaryComponent.component_type.$pristine || salaryComponent.component_type.$touched)" class="help-block">Component type Required.</p>
+            <!-- <div ng-show="salaryComponent.component_type.$valid && salaryComponent.component_type.$dirty ">
+                <span class="form-control-feedback glyphicon glyphicon-ok" style="color: green"></span>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="show(salaryComponent)" ng-disabled="salaryComponent.$invalid">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

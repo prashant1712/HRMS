@@ -1,0 +1,40 @@
+<form name="captureattendance">
+<div class="modal-header">
+        <h3>{{employee.firstname+" "+employee.lastname}}</h3>
+        <h4>Total Salary: {{employee.totalSalary}}</h4>
+    </div>
+        
+        
+    <div class="modal-body">
+        
+        <p class="input-group">
+            <input type="text" class="form-control" name="attendanceDate" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="selectDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>
+        <div class="row"> 
+            <div class="col-xs-6">
+                <div class="form-group" ng-class="{ 'has-error' : captureattendance.checkin.$invalid && (!captureattendance.checkin.$pristine || captureattendance.checkin.$touched) }">
+                    <label>Check In Time</label>
+                    <div uib-timepicker ng-model="checkin" name="checkin" show-meridian="flase"></div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group" ng-class="{'has-error': captureattendance.checkout.$invalid && (!captureattendance.checkout.$pristine || captureattendance.checkout.$touched) }">
+                    <label>Check Out Time</label>
+                    <div uib-timepicker ng-model="checkout" name="checkout"  show-meridian="false"></div>
+                </div>
+            </div>
+        </div>
+
+       
+
+            
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-disabled="captureattendance.$invalid" ng-click="submit(captureattendance)">Submit</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

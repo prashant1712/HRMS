@@ -1,0 +1,88 @@
+<div >
+    <div class="row" ng-show="!editovertimeSettings">
+        <div class="col-sm-4">
+            <label style=" float:left">Overtime (per hour %): {{" "+overtime_settings.percentValue}}</label>
+        </div>
+        <div class="col-sm-">
+            <button type="button" class="btn btn-warning btn-sm" ng-click="editovertimeSettings=!editovertimeSettings">Edit</button>
+        </div>
+    </div>
+
+    <div class="row" ng-if="editovertimeSettings=='true'">
+        <div class="col-sm-6">
+            <label>Overtime (per hour %)</label>
+            <input type="number" name="overtime_settings" ng-model="overtime_settings">
+        </div>
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-primary" ng-click="saveOvertime()">Save</button>
+        </div>
+    </div>
+</div><br><hr>
+
+<form name="reductionForm">
+    <div class="row">
+        <div style="margin-left: 15px" class="col-sm-1">
+            <div class="form-group">
+                <label>Late By: </label>
+                
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div uib-timepicker name="duration" ng-model="deduction.duration"  show-meridian="flase" required></div>
+        </div>
+    </div><br>
+    <div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Enter % to be deducted</label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="number" name="percentValue" ng-model="deduction.percentValue" class="form-control" placeholder="Enter value in percentage" required>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <button type="button" ng-disabled="reductionForm.$invalid" class="btn btn-primary" ng-click="makeDeduction(reductionForm)">Make Deduction Slab</button>
+</form>
+<br><hr>
+
+<h4><label>Deduction Slabs:</label></h4>
+<br>
+
+<div class="table-responsive">
+    <table class="table">
+
+        <tr>
+            <th>Duration(min)</th>
+            <th>% to be Deducted</th>
+        </tr>
+
+        <tbody ng-repeat="deduction in deduction_settings">
+            <tr ng-show="!editDeduction">
+                <td ng-model="deduction.duration">{{deduction.duration}}</td>
+                <td ng-model="deduction.percentValue">{{deduction.percentValue}}%</td>
+                <td>
+                    <button ng-show="!editDeduction" ng-click="editDeduction=!editDeduction" class="btn btn-warning">Edit</button>
+                   
+                    <button ng-click=deleteDeduction(deduction._id,deduction) class="btn btn-default">Delete</button>
+                </td>
+            </tr>
+            <tr ng-show="editDeduction">
+                    <td>
+                        <div uib-timepicker ng-model="deduction.duration" ng-change="changed()" show-meridian="flase"></div>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="deduction.percentValue" class="form-control" style="width:100px; margin-top:35px">
+                    </td>
+                    <div ng-show="terror">time not vaild</div>
+                    <td>
+                            <button style="margin-top:35px" ng-click="editDeductionSlab($scope,deduction,deduction._id)" class="btn btn-warning">Save</button>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,69 @@
+<div ui-view>
+    <div class="row">
+        <div ng-controller="componentModalCtrl" class="col-xs-7">    
+            <button class="btn btn-primary" ng-show="!show_editable_component" ng-click="add_salary_component()">Add Component</button>
+        </div>
+    </div>
+
+    <hr>
+    <!-- loading while the service fetches data -->
+    <div ng-show="isLoading" style="color: red">
+        <span class="glyphicon glyphicon-time"></span>Loading..
+    </div>
+
+    <div ng-show="!isLoading" ng-repeat="component in component_details" style="float: left; margin-left: 50px;" dnd-list="component_details" dnd-draggable="component" dnd-moved="component_details.splice($index,1)" dnd-type="'salary_components'" dnd-effect-allowed="move">
+        <div ng-class="component.type==='allowance'? 'panel panel-primary':'panel panel-default'" style=" width: 100%;" >
+            <div class="panel-heading">
+                <h3 class="panel-title">{{component.name}}
+                <span style="float: right;" class="glyphicon glyphicon-remove-sign" ng-click="removeDetail(component._id)"></span></h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group" ng-show="!show_editable_component">
+                    <li class="list-group-item" ng-model="component.value">Value: {{component.value}}</li>
+                    <li class="list-group-item"ng-model="component.valueType">Value Type: {{component.valueType}}</li>
+                    <li class="list-group-item"ng-model="component.type">Type: {{component.type}}</li>
+                </ul>
+                <ul class="list-group" ng-show="show_editable_component">
+                    
+                    <li class="list-group-item">Value Type: 
+                        <div class="input-group">
+                            <input type="number" name="value" class="form-control" ng-model="component.value" placeholder="Enter value">
+                            <div class="input-group-btn" data-toggle="buttons">
+                                <label class="btn btn-default" ng-class="{active: component.valueType == 'INR'}" ng-click="setComponentValueType('INR')">
+                                    <input type="radio" value="true" ng-model="component.valueType"></input>
+                                    INR
+                                </label>
+                                <label class="btn btn-default" ng-class="{active: component.valueType == 'percent'}" ng-click="setComponentValueType('percent')">
+                                    <input type="radio" value="false" ng-model="component.valueType"></input>
+                                    %
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label>Type: </label>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary" ng-class="{active: component.type == 'allowance'}" ng-click="setComponentType($scope,'allowance')">
+                                <input type="radio" value="true" ng-model="component.type"></input>
+                                Allowance
+                            </label>
+                            <label class="btn btn-primary" ng-class="{active: component.type == 'deduction'}" ng-click="setComponentType($scope,'deduction')">
+                                <input type="radio" value="false" ng-model="component.type"></input>
+                                Deduction
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <a ng-show="!show_editable_component" ng-click="show_editable_component=true" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                </a>
+                <a ng-show="show_editable_component" ng-click="saveEdit($scope,component)" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-ok"></span> Done
+                </a>
+            </div>
+        </div>        
+    </div>
+    
+</div>

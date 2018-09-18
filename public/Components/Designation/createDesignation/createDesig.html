@@ -1,0 +1,148 @@
+<div ng-if="showAdminView=='true'">
+	<h3 class="createDesig1">Create Designation</h3>
+	<br>
+	<div class="createDesignation">
+		<form name="form">
+			<div class="form-group has-feedback" ng-class="{'has-error' : form.designationName.$invalid && (!form.designationName.$pristine || form.designationName.$touched) }">
+				<label>Designation Name: </label>
+
+				<input type="text" name="name" placeholder="enter Designation" class="form-control" ng-model="designationName"
+					ng-required="true" designation-name>
+				<div ng-show="form.designationName.$pending" style="color: blue">
+					<span class="glyphicon glyphicon-time"></span>Checking
+				</div>
+
+				<div ng-show="form.designationName.$error.name_designation" class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
+					This designation already exists!
+				</div>
+				<p ng-show="form.designationName.$invalid && (!form.designationName.$pristine || form.designationName.$touched)" class="help-block">Designation name required.</p>
+				
+
+				<div ng-show="form.designationName.$valid && form.designationName.$dirty ">
+					<span class="form-control-feedback glyphicon glyphicon-ok" style="color: green"></span>
+				</div>
+			</div>
+			<br>
+			
+			
+			<br>
+			<b><h3>Set Salary Structure</h3></b>
+			<div class="row">
+
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<h5><label> Components Available:</label></h5>
+					<!-- DND 1 for available salary components -->
+					<ul dnd-list="availableSalaries">
+						<li ng-repeat="item in availableSalaries" dnd-draggable="item" 
+						dnd-moved="availableSalaries.splice($index, 1)" dnd-effect-allowed="move">
+						<ul class="list-group">
+							<li class="list-group-item">Name: <b>{{item.name}}</b>,  Value: <b>{{item.value}} {{item.valueType==='percent'? '%':'Rs.'}}</b></li>
+						</ul>
+						</li>
+					</ul>
+				</div>
+
+
+		
+				<h5><label>Selected Components:</label></h5>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 scrollDesComp">
+					<ul dnd-list="selectedSalaries"
+							dnd-inserted="updateTotal('inserted at', index, external, type)">
+						<li>Basic (INR)
+							<input class="form-control" type="text" ng-model="basicAmount" name="basicAmount" placeholder="Enter basic..."
+							ng-pattern="/^\d+$/" ng-required="true" ng-change="updateTotal()">
+							<div uib-alert class="alert-danger" ng-messages="form.basicAmount.$error" 
+							ng-if="form.basicAmount.$invalid && form.basicAmount.$touched">
+								<p ng-message="pattern">Enter a valid no.</p>
+								<p ng-message="required">It is a required field</p>
+							</div>
+						</li>
+						<!-- DND 2 for selected salary components -->
+						<li ng-init="item.valueType=='INR'" ng-show="item.name!='basic'" 
+						uib-alert ng-class="{ 'alert-success': item.type === 'allowance','alert-danger': item.type==='deduction'}"
+						ng-repeat="item in selectedSalaries" dnd-draggable="item" dnd-moved="selectedSalaries.splice($index, 1)" 
+						dnd-effect-allowed="move">
+							<b>{{item.name}}</b>
+							<a class="pull-right" ng-click="remove(item._id)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+							<br> % of basic Salary
+							<input type="radio" value="percent" ng-model="item.valueType"> &nbsp; &nbsp; 
+							Custom Value
+							<input type="radio" value="INR" ng-model="item.valueType" >
+
+							<!-- For custom input in INR of salary component-->
+							<div class="form-group" ng-if="item.valueType==='INR'">
+								Value (INR)
+								<input type="text" ng-model="item.value" class="form-control" name="{{'component'+item._id}}" 
+								ng-pattern="/^\d+$/" ng-required="true" ng-change="updateTotal()">
+								<div uib-alert class="alert-danger" ng-messages="form['component'+item._id].$error" 
+								ng-if="form['component'+item._id].$touched && form['component'+item._id].$invalid">
+									<p ng-message="pattern">Enter a valid amount</p>
+									<p ng-message="required">It is a required field</p>
+								</div>
+								Amount:
+								<p>{{ item.value }}</p>
+							</div>
+
+							<!-- For percentage based input of salary component -->
+							<div class="form-group" ng-if="item.valueType==='percent'">
+								Percentage
+								<input type="text" ng-model="item.value" class="form-control" ng-required="true" 
+								percentage name="{{'component' + item._id}}"
+								ng-pattern="/^\d+$/" ng-change="updateTotal()">
+								<div uib-alert class="alert-danger" ng-messages="form['component'+item._id].$error" 
+								ng-if="form['component'+item._id].$invalid && form['component'+item._id].$touched">
+									<p ng-message="pattern">Enter a valid number</p>
+									<p ng-message="required">It is a required field</p>
+									<p ng-message="percentage">Enter a valid percentage</p>
+								</div>
+								Amount:
+								<p>{{ item.amount=basicAmount*item.value/100 }}</p>
+							</div>
+						</li>
+						<li>Total: {{total}}
+
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+
+			<br>
+			<div class="createDesig1">
+			<button ng-show="!editMode" class="btn btn-success desigBtn" ng-click="addDesignation()" ng-disabled="form.$invalid">Add Designation</button>
+			<button ng-show="editMode" class="btn btn-success desigBtn" ng-click="updateDesignation()" ng-disabled="form.$invalid">Update Designation</button>
+			<button class="btn btn-warning createEmpBtn" ng-click="cancelDesig()">Cancel</button>
+			<br><br>
+		</div>
+		</form>
+
+		<div uib-alert class="alert-success" ng-show="designationSuccess">
+			Designation added successfully!
+		</div>
+		<div uib-alert class="alert-danger" ng-show="designationFailed">
+			Designation was not added!
+		</div>
+
+		<div uib-alert class="alert-success" ng-show="designationUpdateSuccess">
+			Designation updated successfully!
+		</div>
+		<div uib-alert class="alert-danger" ng-show="designationUpdateFailed">
+			Designation was not updated!
+		</div>
+
+
+
+	</div>
+</div>
+<div ng-if="showAdminView=='false'">
+	<growl-notifications></growl-notifications>
+	<grow-notification>
+		You are not allowed to access this page<br>
+		<a ui-sref="dashboard()">Click here to redirect..</a>
+	</grow-notification>
+</div>

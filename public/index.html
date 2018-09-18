@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>HRMS</title>
+
+
+  <link rel="stylesheet" href="https://bootswatch.com/3/spacelab/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js"></script>
+  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/angular-growl-notifications@2.6.0/dist/angular-growl-notifications.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ngbootbox@0.2.0/dist/ngBootbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.5.1/angular-touch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-animate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-cookies.js"></script>
+  
+  <script src="app.js"></script>
+
+  <!-- Components -->
+  <script src="/Components/Salary/salary_components.js"></script>
+  <script src="/Components/Designation/designation.js"></script>
+  <script src="/Components/Employees/employeeComponent.js"></script>
+  <script src="/Components/Shifts/shiftComponent.js"></script>
+  <script src="/Components/Attendance/attendanceComponent.js"></script>
+  <script src="/Components/Settings/settingsComponent.js"></script>
+  <script src="/Components/Login/loginComponent.js"></script>
+  <script src="/Components/Dashboard/dashboard.js"></script>
+  <script src="/Components/Reports/reportComponent.js"></script>
+
+  <!-- controllers -->
+  <script src="/Components/Salary/controllers/salaryComponentCtrl.js"></script>
+  <script src="/Components/Designation/createDesignation/controllers/createDesigCtrl.js"></script>
+  <script src="/Components/Employees/createEmployee/controllers/createEmployeeCtrl.js"></script>
+  <script src="/Components/Salary/Modal/SalaryComponent/controllers/componentModalCtrl.js"></script>
+  <script src="/Components/Designation/viewDesignation/controllers/viewDesignationCtrl.js"></script>
+  <script src="/Components/Shifts/controllers/shiftsCtrl.js"></script>
+  <script src="/Components/Employees/viewEmployee/Modal/EmployeeDetail/controllers/employeeDetailModal.js"></script>
+  <script src="/Components/Employees/viewEmployee/controllers/viewEmployeeCtrl.js"></script>
+  <script src="/Components/Attendance/controllers/attendanceCtrl.js"></script>
+  <script src="/Components/Attendance/Modal/captureAttendance/controllers/captureAttendanceModalCtrl.js"></script>
+  <script src="/Components/Reports/controllers/reportCtrl.js"></script>
+  <script src="/Components/Employees/viewEmployee/Modal/attendanceDetail/controllers/attendanceDetailModalCtrl.js"></script>
+  <script src="/Components/Reports/Modal/Report/controllers/reportModalCtrl.js"></script>
+  <script src="/Components/Settings/controllers/settingsCtrl.js"></script>
+  <script src="/Components/Login/controllers/login.js"></script>
+  <script src="/Components/Dashboard/controllers/dashboardCtrl.js"></script>
+  
+  
+  <!-- services -->
+  <script src="/Services/SalaryComponentService.js"></script>
+  <script src="/Services/designationService.js"></script>
+  <script src="/Services/employeeService.js"></script>
+  <script src="/Services/shiftService.js"></script>
+  <script src="/Services/get_cities_service.js"></script>
+  <script src="/Services/attendanceService.js"></script>
+  <script src="/Services/settingsService.js"></script>
+  <script src="/Services/loginService.js"></script>
+  <script src="/Services/dashboardService.js"></script>
+
+  <!-- validations -->
+  <script src="/Validations/component_validation.js"></script>
+  <script src="/Validations/designation_validation.js"></script>
+  <script src="/Validations/employee_validation.js"></script>
+  <script src="/Validations/shift_validation.js"></script>
+  
+  
+  
+  <style>
+    body{
+      background: #eee    }
+    .wrapper {    
+      margin-top: 80px;
+      margin-bottom: 20px;
+    }
+
+    .form-signin {
+      max-width: 420px;
+      padding: 30px 38px 66px;
+      margin: 0 auto;
+      background-color: #eee;
+      border: 3px dotted rgba(0,0,0,0.1);  
+      }
+
+    .form-signin-heading {
+      text-align:center;
+      margin-bottom: 30px;
+    }
+
+    .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+    }
+
+    input[type="text"] {
+      margin-bottom: 0px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    input[type="password"] {
+      margin-bottom: 20px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    
+
+  </style>
+</head>
+
+<body ng-app="hrms">
+  <div ui-view>
+    
+  </div>
+  
+</body>
+
+</html>
